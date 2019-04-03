@@ -15,6 +15,9 @@ public class Item {
         this.category = category;
     }
 
+    public Item(int id) {
+    }
+
     public Category getCategory() {
         return category;
     }

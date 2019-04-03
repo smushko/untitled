@@ -1,5 +1,6 @@
 package homeworks.lesson10.task5market;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
                 new Item(5, "Футболка", Category.CLOTHIN, 100),
                 new Item(6, "Штаны", Category.CLOTHIN, 150)};
         Scanner sc = new Scanner(System.in);
+        ArrayList<Item> basket = new ArrayList<Item>();
 
         System.out.println("введите логин");
         String a = sc.nextLine();
@@ -21,12 +23,51 @@ public class Main {
         System.out.println("пользователь");
         System.out.println(user1.toString());
 
+        PrintCategoryItems(items, Category.FOOD);
+        PrintAllItems(items);
+
+        System.out.println();
+        System.out.println("для добавления товара в корзину введите его ID, для окончания выбора введите 0 или несуществующий ID");
+
+        InsertItems(items, basket);
+
+        System.out.println("в корзину добавлены товары: ");
+        for (Item i : basket) {
+            System.out.println(i.toString());
+        }
+    }
+
+    private static void InsertItems(Item[] items, ArrayList<Item> basket) {
+        Scanner sc = new Scanner(System.in);
+        int valueInsert = Integer.parseInt(sc.nextLine());
+
+        while (valueInsert != 0 && valueInsert > 0 && valueInsert < items.length) {
+            for (Item i : items) {
+                if (i.getId() == valueInsert) {
+                    basket.add(new Item(i.getId(), i.getName(), i.getCategory(), i.getPrice()));
+                    System.out.println(i.toString());
+                }
+            }
+            valueInsert = Integer.parseInt(sc.nextLine());
+        }
+    }
+
+
+    private static void PrintCategoryItems(Item[] items, Category category) {
+        System.out.println();
+        System.out.println("каталог товаров в категории: " + category);
+        for (Item i : items) {
+            if (i.getCategory() == category) {
+                System.out.println(i.toString());
+            }
+        }
+    }
+
+    private static void PrintAllItems(Item[] items) {
         System.out.println();
         System.out.println("каталог всех товаров");
         for (Item i : items) {
-            if (i instanceof Category.FOOD){
-                i.toString();
-            }
+            System.out.println(i.toString());
         }
     }
 }
