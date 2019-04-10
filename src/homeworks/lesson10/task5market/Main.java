@@ -12,7 +12,7 @@ public class Main {
                 new Item(5, "Футболка", Category.CLOTHIN, 100),
                 new Item(6, "Штаны", Category.CLOTHIN, 150)};
         Scanner sc = new Scanner(System.in);
-        ArrayList<Item> basket = new ArrayList<Item>();
+        ArrayList<Order> basket = new ArrayList<Order>();
 
         System.out.println("введите логин");
         String a = sc.nextLine();
