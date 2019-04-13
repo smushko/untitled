@@ -7,13 +7,13 @@ import java.util.Objects;
 public class Order {
     private int id;
     private String nickName; // ник покупателя
-    private Item[] basket;
+    private Item item;
     private LocalDateTime dateTime; //дата покупки
 
-    public Order(int id, String nickName, Item[] basket, LocalDateTime dateTime) {
+    public Order(int id, String nickName, Item item, LocalDateTime dateTime) {
         this.id = id;
         this.nickName = nickName;
-        this.basket = basket;
+        this.item = item;
         this.dateTime = dateTime;
     }
 
@@ -33,12 +33,12 @@ public class Order {
         this.nickName = nickName;
     }
 
-    public Item[] getBasket() {
-        return basket;
+    public Item getItem() {
+        return item;
     }
 
-    public void setBasket(Item[] basket) {
-        this.basket = basket;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public LocalDateTime getDateTime() {
@@ -56,15 +56,13 @@ public class Order {
         Order order = (Order) o;
         return id == order.id &&
                 nickName.equals(order.nickName) &&
-                Arrays.equals(basket, order.basket) &&
+                item.equals(order.item) &&
                 dateTime.equals(order.dateTime);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, nickName, dateTime);
-        result = 31 * result + Arrays.hashCode(basket);
-        return result;
+        return Objects.hash(id, nickName, item, dateTime);
     }
 
     @Override
@@ -72,7 +70,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", nickName='" + nickName + '\'' +
-                ", basket=" + Arrays.toString(basket) +
+                ", item=" + item +
                 ", dateTime=" + dateTime +
                 '}';
     }
